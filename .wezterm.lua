@@ -45,31 +45,4 @@ config.window_background_opacity = 0.9
 
 config.use_fancy_tab_bar = false
 
-local function tab_title(tab_info)
-	return "teste"
-end
-
-wezterm.on("format-tab-title", function(tab, _, _, conf, _, _)
-	local palette = conf.resolved_palette
-	local index = tab.tab_index + 1
-	local title = index .. tab_title(tab) .. "  "
-	local fg = palette.ansi[6]
-
-	if tab.is_active then
-		fg = palette.ansi[4]
-	end
-
-	local fillerwidth = 4 + index
-	local width = conf.tab_max_width - fillerwidth - 1
-	if (#title + fillerwidth) > conf.tab_max_width then
-		title = wezterm.truncate_right(title, width) .. "…"
-	end
-
-	return {
-		{ Background = { Color = palette.tab_bar.background } },
-		{ Foreground = { Color = fg } },
-		{ Text = title },
-	}
-end)
-
 return config
