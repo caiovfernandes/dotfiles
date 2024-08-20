@@ -1,12 +1,12 @@
-export ZSH="/Users/caiofernandes/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
 plugins=(
   git
   colored-man-pages
   zsh-vi-mode # git clone https://github.com/jeffreytse/zsh-vi-mode $HOME/.oh-my-zsh/custom/plugins/zsh-vi-mode
-  zsh-autosuggestions # git clone https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/custom/plugins/zsh-vi-mode
-  zsh-syntax-highlighting # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting.git
+  zsh-autosuggestions # git clone https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+  zsh-syntax-highlighting # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -17,7 +17,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
-alias @DNX="z /Users/caiofernandes/Desktop/Projetos/PARA/2.Areas/DNX"
 alias gs='git status'
 alias gba='git branch -a'
 alias gf='git fetch'
@@ -29,8 +28,6 @@ alias gca='git commit --amend'
 alias gps='git push origin'
 alias gpl='git pull origin'
 alias gd='git diff'
-export PATH="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home/bin:$PATH"
-export PATH="/Users/caiofernandes/Library/Application Support/JetBrains/Toolbox/scripts:$PATH"
 export JAVA_HOME=$(/usr/libexec/java_home -v11)
 alias c='clear'
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -51,8 +48,6 @@ export GOPATH=$HOME/Go
 export PATH=$PATH:$GOPATH/bin
 alias n="nvim"
 alias t="tmux"
-eval "$(gh copilot alias -- zsh)"
-alias g="ghcs"
 alias cat="bat"
 
 # ---- FZF -----
@@ -117,6 +112,6 @@ eval $(thefuck --alias fk)
 # ---- Zoxide (better cd) ----
 eval "$(zoxide init zsh)"
 
-
 neofetch
 
+export PATH="/Applications/OpenVPN Connect/OpenVPN Connect.app/Contents/MacOS:$PATH"
