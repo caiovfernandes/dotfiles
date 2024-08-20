@@ -4,7 +4,7 @@ local config = wezterm.config_builder()
 
 config.enable_tab_bar = true
 
-config.font = wezterm.font("MonoLisa Nerd Font")
+config.font = wezterm.font("JetBrains Mono")
 
 config.harfbuzz_features = {
 	"calt=1",
@@ -40,8 +40,6 @@ config.font_size = 16
 config.line_height = 1.2
 config.tab_bar_at_bottom = true
 config.window_decorations = "RESIZE"
-
-config.window_background_opacity = 0.9
 
 config.use_fancy_tab_bar = false
 
