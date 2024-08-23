@@ -6,6 +6,22 @@ config.enable_tab_bar = true
 
 config.font = wezterm.font("JetBrains Mono")
 
+config.keys = {
+	{ key = "f", mods = "CTRL", action = wezterm.action({ Search = { CaseInSensitiveString = "" } }) },
+	{
+		key = "j",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.PromptInputLine({
+			description = "Enter new name for tab",
+			action = wezterm.action_callback(function(window, pane, line)
+				if line then
+					window:active_tab():set_title(line)
+				end
+			end),
+		}),
+	},
+}
+
 config.harfbuzz_features = {
 	"calt=1",
 	"liga=1",
