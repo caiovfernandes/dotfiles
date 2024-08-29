@@ -20,6 +20,18 @@ config.keys = {
 			end),
 		}),
 	},
+	-- Split vertically
+	{
+		key = "\\",
+		mods = "CTRL",
+		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+	-- Split horizontally
+	{
+		key = "D",
+		mods = "CMD|SHIFT",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
 }
 
 config.harfbuzz_features = {
