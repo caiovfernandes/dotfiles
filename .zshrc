@@ -166,5 +166,7 @@ complete -C /opt/homebrew/bin/aws-sso aws-sso
 # END_AWS_SSO_CLI
 complete -C '/opt/homebrew/bin/aws_completer' aws
 
+[ ! -f "$HOME/.x-cmd.root/X" ] || . "$HOME/.x-cmd.root/X" # boot up x-cmd.
+
 # Amazon Q post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
