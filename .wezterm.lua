@@ -32,6 +32,27 @@ config.keys = {
 		mods = "CMD|SHIFT",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
 	},
+	-- Windows Movement
+	{
+		key = "l",
+		mods = "OPT",
+		action = wezterm.action.ActivatePaneDirection("Right"),
+	},
+	{
+		key = "k",
+		mods = "OPT",
+		action = wezterm.action.ActivatePaneDirection("Up"),
+	},
+	{
+		key = "j",
+		mods = "OPT",
+		action = wezterm.action.ActivatePaneDirection("Down"),
+	},
+	{
+		key = "h",
+		mods = "OPT",
+		action = wezterm.action.ActivatePaneDirection("Left"),
+	},
 }
 
 config.harfbuzz_features = {
