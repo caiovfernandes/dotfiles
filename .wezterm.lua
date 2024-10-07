@@ -53,6 +53,12 @@ config.keys = {
 		mods = "OPT",
 		action = wezterm.action.ActivatePaneDirection("Left"),
 	},
+	-- Bind CopyMode to CMD + x
+	{
+		key = "x",
+		mods = "CMD",
+		action = wezterm.action.ActivateCopyMode,
+	},
 }
 
 config.harfbuzz_features = {
