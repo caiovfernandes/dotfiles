@@ -4,13 +4,13 @@
 # bold_italic_font auto
 disable_ligatures never
 ## END_KITTY_FONTS
+confirm_os_window_close 0
 
 macos_hide_titlebar true
 
 enabled_layouts all
 
-
-tab_bar_style powerline
+# tab_bar_style powerline
 tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{index}:{'🇿' if layout_name == 'stack' and num_windows > 1 else ''}{title}"
 
 shell_integration enabled
@@ -29,12 +29,9 @@ kitty_mod ctrl+shift
 # so you can NOT do this:
 
 # BEGIN_KITTY_THEME
-# 1984 Dark
+# Cherry Midnight
 include current-theme.conf
 # END_KITTY_THEME
-
-
-
 
 ## SETUP PERFORMANCE MODE
 # 150~ FPS for MBP display (untested)
@@ -47,12 +44,21 @@ input_delay 0
 sync_to_monitor no
 
 
-background_opacity 1
+background_opacity 0.7
 background_blur 100
 font_size 16
 # BEGIN_KITTY_FONTS
-font_family      family='JetBrains Mono' variable_name=JetBrainsMono wght=279.48717948717945
+font_family      family='JetBrains Mono' style=Thin variable_name=JetBrainsMono
 bold_font        auto
 italic_font      auto
 bold_italic_font auto
 # END_KITTY_FONTS
+
+map ctrl+h neighboring_window left
+map ctrl+l neighboring_window right
+map ctrl+k neighboring_window up
+map ctrl+j neighboring_window down
+
+startup_session session.conf
+
+## END SETUP
