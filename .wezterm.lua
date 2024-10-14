@@ -1,16 +1,29 @@
 local wezterm = require("wezterm")
-
+local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 local config = wezterm.config_builder()
 
 config.enable_tab_bar = true
 
 config.font = wezterm.font("JetBrains Mono")
+config.native_macos_fullscreen_mode = true
+config.max_fps = 240
+config.animation_fps = 240
+config.send_composed_key_when_right_alt_is_pressed = false
+config.send_composed_key_when_left_alt_is_pressed = true
 
 config.keys = {
-	{ key = "f", mods = "CTRL", action = wezterm.action({ Search = { CaseInSensitiveString = "" } }) },
+	--Fullscreen
 	{
-		key = "j",
-		mods = "CTRL|SHIFT",
+		key = "Enter",
+		mods = "CTRL",
+		action = wezterm.action.ToggleFullScreen,
+	},
+	-- Search
+	{ key = "f", mods = "CTRL", action = wezterm.action({ Search = { CaseInSensitiveString = "" } }) },
+	-- Rename tab
+	{
+		key = "e",
+		mods = "CMD",
 		action = wezterm.action.PromptInputLine({
 			description = "Enter new name for tab",
 			action = wezterm.action_callback(function(window, pane, line)
@@ -35,22 +48,22 @@ config.keys = {
 	-- Windows Movement
 	{
 		key = "l",
-		mods = "OPT",
+		mods = "OPT|SHIFT",
 		action = wezterm.action.ActivatePaneDirection("Right"),
 	},
 	{
 		key = "k",
-		mods = "OPT",
+		mods = "OPT|SHIFT",
 		action = wezterm.action.ActivatePaneDirection("Up"),
 	},
 	{
 		key = "j",
-		mods = "OPT",
+		mods = "OPT|SHIFT",
 		action = wezterm.action.ActivatePaneDirection("Down"),
 	},
 	{
 		key = "h",
-		mods = "OPT",
+		mods = "OPT|SHIFT",
 		action = wezterm.action.ActivatePaneDirection("Left"),
 	},
 	-- Bind CopyMode to CMD + x
@@ -58,6 +71,12 @@ config.keys = {
 		key = "x",
 		mods = "CMD",
 		action = wezterm.action.ActivateCopyMode,
+	},
+	-- Resize window and font
+	{
+		key = "0",
+		mods = "CMD|SHIFT",
+		action = wezterm.action.ResetFontAndWindowSize,
 	},
 }
 
@@ -97,5 +116,6 @@ config.tab_bar_at_bottom = true
 config.window_decorations = "RESIZE"
 
 config.use_fancy_tab_bar = false
+tabline.setup()
 
 return config
