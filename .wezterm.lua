@@ -35,8 +35,8 @@ config.keys = {
 	},
 	-- Split vertically
 	{
-		key = "\\",
-		mods = "CTRL",
+		key = "V",
+		mods = "CMD|SHIFT",
 		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
 	},
 	-- Split horizontally
