@@ -48,22 +48,22 @@ config.keys = {
 	-- Windows Movement
 	{
 		key = "l",
-		mods = "OPT|SHIFT",
+		mods = "OPT",
 		action = wezterm.action.ActivatePaneDirection("Right"),
 	},
 	{
 		key = "k",
-		mods = "OPT|SHIFT",
+		mods = "OPT",
 		action = wezterm.action.ActivatePaneDirection("Up"),
 	},
 	{
 		key = "j",
-		mods = "OPT|SHIFT",
+		mods = "OPT",
 		action = wezterm.action.ActivatePaneDirection("Down"),
 	},
 	{
 		key = "h",
-		mods = "OPT|SHIFT",
+		mods = "OPT",
 		action = wezterm.action.ActivatePaneDirection("Left"),
 	},
 	-- Bind CopyMode to CMD + x
