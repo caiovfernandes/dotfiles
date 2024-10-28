@@ -78,6 +78,11 @@ config.keys = {
 		mods = "CMD|SHIFT",
 		action = wezterm.action.ResetFontAndWindowSize,
 	},
+	{
+		key = ";",
+		mods = "CMD",
+		action = wezterm.action.TogglePaneZoomState,
+	},
 }
 
 config.harfbuzz_features = {
@@ -115,6 +120,7 @@ config.line_height = 1.2
 config.tab_bar_at_bottom = true
 config.window_decorations = "RESIZE"
 
+-- config.window_background_opacity = 0.8
 config.use_fancy_tab_bar = false
 tabline.setup()
 
