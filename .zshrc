@@ -6,9 +6,10 @@ ZSH_THEME="robbyrussell"
 plugins=(
   git
   colored-man-pages
-  zsh-vi-mode # git clone https://github.com/jeffreytse/zsh-vi-mode $HOME/.oh-my-zsh/custom/plugins/zsh-vi-mode
+  # zsh-vi-mode # git clone https://github.com/jeffreytse/zsh-vi-mode $HOME/.oh-my-zsh/custom/plugins/zsh-vi-mode
   zsh-autosuggestions # git clone https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
   zsh-syntax-highlighting # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+  vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -172,5 +173,5 @@ complete -C '/opt/homebrew/bin/aws_completer' aws
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
 
 
-export EDITOR=nvim
+export EDITOR=vi
 export VISUAL=$EDITOR
