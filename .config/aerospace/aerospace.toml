@@ -204,3 +204,35 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+
+
+[[on-window-detected]]
+if.app-id = 'md.obsidian'
+if.during-aerospace-startup = true
+run = ['move-node-to-workspace Y']  # The callback itself
+
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+if.during-aerospace-startup = true
+run = ['move-node-to-workspace I']  # The callback itself
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+if.during-aerospace-startup = true
+run = ['move-node-to-workspace C']  # The callback itself
+
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Safari'
+if.during-aerospace-startup = true
+run = ['move-node-to-workspace S']  # The callback itself
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.teams2'
+if.during-aerospace-startup = true
+run = ['move-node-to-workspace T']  # The callback itself
+
+[[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser'
+if.during-aerospace-startup = true
+run = ['move-node-to-workspace U']  # The callback itself
