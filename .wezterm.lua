@@ -172,7 +172,15 @@ config.harfbuzz_features = {
 	"ss2=1",
 }
 
-config.color_scheme = "Dracula"
+-- config.color_scheme = "Abernathy"
+-- config.color_scheme = "Atom"
+-- config.color_scheme = "Duckbones"
+
+-- config.color_scheme = "Floraverse"
+config.color_scheme = "Laser"
+-- config.color_scheme = "Material Vivid (base16)"
+-- config.color_scheme = "midnight-in-mojave"
+-- config.color_scheme = "Mikazuki (terminal.sexy)"
 config.font_size = 16
 config.line_height = 1.2
 config.tab_bar_at_bottom = true
