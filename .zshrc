@@ -1,3 +1,5 @@
+# zmodload zsh/zprof
+
 # Amazon Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 export ZSH="$HOME/.oh-my-zsh"
@@ -31,7 +33,6 @@ alias gca='git commit --amend'
 alias gps='git push origin'
 alias gpl='git pull origin'
 alias gd='git diff'
-alias c='clear'
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -173,5 +174,14 @@ complete -C '/opt/homebrew/bin/aws_completer' aws
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
 
 
-export EDITOR=vi
+export EDITOR=nvim
 export VISUAL=$EDITOR
+
+
+# Function to run chatgpt and save output to a file
+r() {
+    # Run chatgpt and save the output
+    chatgpt "$1" | bat -l markdown
+}
+
+# zprof
