@@ -2,6 +2,9 @@ local wezterm = require("wezterm")
 local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabline.wez")
 local config = wezterm.config_builder()
 local w = require("wezterm")
+local io = require("io")
+local os = require("os")
+local act = wezterm.action
 
 -- if you are *NOT* lazy-loading smart-splits.nvim (recommended)
 local function is_vim(pane)
@@ -55,8 +58,9 @@ config.enable_tab_bar = true
 
 config.font = wezterm.font("JetBrains Mono")
 config.native_macos_fullscreen_mode = true
-config.max_fps = 240
-config.animation_fps = 240
+config.max_fps = 120
+config.webgpu_power_preference = "HighPerformance"
+config.animation_fps = 120
 config.send_composed_key_when_right_alt_is_pressed = false
 config.send_composed_key_when_left_alt_is_pressed = true
 
@@ -70,18 +74,21 @@ config.keys = {
 	split_nav("resize", "j"),
 	split_nav("resize", "k"),
 	split_nav("resize", "l"),
+
 	--Fullscreen
 	{
 		key = "Enter",
 		mods = "CTRL",
 		action = wezterm.action.ToggleFullScreen,
 	},
+
 	-- Search
 	{ key = "f", mods = "CTRL", action = wezterm.action({ Search = { CaseInSensitiveString = "" } }) },
+
 	-- Rename tab
 	{
-		key = "e",
-		mods = "CMD",
+		key = "u",
+		mods = "CMD|SHIFT",
 		action = wezterm.action.PromptInputLine({
 			description = "Enter new name for tab",
 			action = wezterm.action_callback(function(window, pane, line)
@@ -141,6 +148,11 @@ config.keys = {
 		mods = "CMD",
 		action = wezterm.action.TogglePaneZoomState,
 	},
+	{
+		key = "e",
+		mods = "CMD",
+		action = act.EmitEvent("trigger-vim-with-scrollback"),
+	},
 }
 
 config.harfbuzz_features = {
@@ -189,5 +201,37 @@ config.window_decorations = "RESIZE"
 -- config.window_background_opacity = 0.8
 config.use_fancy_tab_bar = false
 tabline.setup()
+
+config.set_environment_variables = {
+	SHELL = "/bin/zsh",
+}
+wezterm.on("trigger-vim-with-scrollback", function(window, pane)
+	-- Retrieve the text from the pane
+	local text = pane:get_lines_as_text(pane:get_dimensions().scrollback_rows)
+
+	-- Create a temporary file to pass to vim
+	local name = os.tmpname()
+	local f = io.open(name, "w+")
+	f:write(text)
+	f:flush()
+	f:close()
+
+	-- Open a new window running vim and tell it to open the file
+	window:perform_action(
+		act.SpawnCommandInNewWindow({
+			args = { "/opt/homebrew/bin/nvim", name },
+		}),
+		pane
+	)
+
+	-- Wait "enough" time for vim to read the file before we remove it.
+	-- The window creation and process spawn are asynchronous wrt. running
+	-- this script and are not awaitable, so we just pick a number.
+	--
+	-- Note: We don't strictly need to remove this file, but it is nice
+	-- to avoid cluttering up the temporary directory.
+	wezterm.sleep_ms(1000)
+	os.remove(name)
+end)
 
 return config
