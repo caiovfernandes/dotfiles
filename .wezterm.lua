@@ -58,9 +58,9 @@ config.enable_tab_bar = true
 
 config.font = wezterm.font("JetBrains Mono")
 config.native_macos_fullscreen_mode = true
-config.max_fps = 120
+config.max_fps = 240
 config.webgpu_power_preference = "HighPerformance"
-config.animation_fps = 120
+config.animation_fps = 240
 config.send_composed_key_when_right_alt_is_pressed = false
 config.send_composed_key_when_left_alt_is_pressed = true
 
@@ -109,6 +109,12 @@ config.keys = {
 		key = "D",
 		mods = "CMD|SHIFT",
 		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	-- Kill pane
+	{
+		key = "p",
+		mods = "CMD",
+		action = wezterm.action.CloseCurrentPane({ confirm = false }),
 	},
 	-- -- Windows Movement
 	-- {
@@ -198,8 +204,8 @@ config.line_height = 1.2
 config.tab_bar_at_bottom = true
 config.window_decorations = "RESIZE"
 
--- config.window_background_opacity = 0.8
-config.use_fancy_tab_bar = false
+config.window_background_opacity = 0.8
+config.use_fancy_tab_bar = true
 tabline.setup()
 
 config.set_environment_variables = {
