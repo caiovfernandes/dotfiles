@@ -1,4 +1,5 @@
 #!/bin/sh
+# Set AWS_PROFILE and AWS_REGION for the current shell session
 
 # List available AWS profiles
 PROFILES=($(aws configure list-profiles))
