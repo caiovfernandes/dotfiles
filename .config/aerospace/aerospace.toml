@@ -57,12 +57,12 @@ preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 10
-inner.vertical =   10
-outer.left =       10
-outer.bottom =     10
-outer.top =        10
-outer.right =      10
+inner.horizontal = 30
+inner.vertical =   30
+outer.left =       30
+outer.bottom =     30
+outer.top =        30
+outer.right =      30
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -207,50 +207,44 @@ alt-shift-l = ['join-with right', 'mode main']
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
-if.during-aerospace-startup = true
 run = ['move-node-to-workspace Y']  # The callback itself
 
 [[on-window-detected]]
 if.app-id = 'com.github.wez.wezterm'
-if.during-aerospace-startup = true
 run = ['move-node-to-workspace I']  # The callback itself
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
-if.during-aerospace-startup = true
 run = ['move-node-to-workspace C']  # The callback itself
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
-if.during-aerospace-startup = true
 run = ['move-node-to-workspace S']  # The callback itself
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.teams2'
-if.during-aerospace-startup = true
 run = ['move-node-to-workspace T']  # The callback itself
 
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser'
-if.during-aerospace-startup = true
 run = ['move-node-to-workspace U']  # The callback itself
 
 [[on-window-detected]]
 if.app-id = 'com.todesktop.230313mzl4w4u92'
-if.during-aerospace-startup = true
 run = ['move-node-to-workspace M']  # The callback itself
 
 [[on-window-detected]]
 if.app-id = 'com.apple.systempreferences'
-if.during-aerospace-startup = true
 run = ['move-node-to-workspace W']  # The callback itself
 
 [[on-window-detected]]
 if.app-id = 'com.apple.finder'
-check-further-callbacks = true
 run = ['move-node-to-workspace F']  # The callback itself
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
-check-further-callbacks = true
-run = ['move-node-to-workspace F']  # The callback itself
+run = ['layout floating', 'move-node-to-workspace F']  # The callback itself
+
+[[on-window-detected]]
+if.app-id = 'com.mailrtech.canarymail-setapp'
+run = ['move-node-to-workspace M']  # The callback itself
