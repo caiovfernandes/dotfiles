@@ -207,6 +207,7 @@ config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.8
 config.use_fancy_tab_bar = true
 tabline.setup()
+notification_handling = "AlwaysShow"
 
 config.set_environment_variables = {
 	SHELL = "/bin/zsh",
