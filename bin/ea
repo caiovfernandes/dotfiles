@@ -1,0 +1,60 @@
+#!/bin/sh
+
+# List available AWS profiles
+PROFILES=($(aws configure list-profiles))
+if [ ${#PROFILES[@]} -eq 0 ]; then
+    echo "No AWS profiles found. Please configure one using 'aws configure'."
+    exit 1
+fi
+
+echo "Available AWS profiles:"
+for i in "${!PROFILES[@]}"; do
+    echo "$((i+1)). ${PROFILES[$i]}"
+done
+
+echo "Select a profile number: "
+read PROFILE_INDEX
+
+# Validate profile selection
+if ! [[ "$PROFILE_INDEX" =~ ^[0-9]+$ ]] || [ "$PROFILE_INDEX" -lt 1 ] || [ "$PROFILE_INDEX" -gt ${#PROFILES[@]} ]; then
+    echo "Invalid selection. Exiting."
+    exit 1
+fi
+AWS_PROFILE=${PROFILES[$((PROFILE_INDEX-1))]}
+
+# List available AWS regions
+REGIONS=(us-east-1 us-east-2 us-west-1 us-west-2 eu-west-1 eu-central-1 ap-southeast-1 ap-southeast-2 ap-northeast-1 ap-northeast-2 sa-east-1)
+
+echo "Available AWS regions:"
+for i in "${!REGIONS[@]}"; do
+    echo "$((i+1)). ${REGIONS[$i]}"
+done
+
+echo "Select a region number: "
+read REGION_INDEX
+
+# Validate region selection
+if ! [[ "$REGION_INDEX" =~ ^[0-9]+$ ]] || [ "$REGION_INDEX" -lt 1 ] || [ "$REGION_INDEX" -gt ${#REGIONS[@]} ]; then
+    echo "Invalid selection. Exiting."
+    exit 1
+fi
+AWS_REGION=${REGIONS[$((REGION_INDEX-1))]}
+
+# Set the AWS profile and region globally
+export AWS_PROFILE=$AWS_PROFILE
+export AWS_REGION=$AWS_REGION
+
+# Persist settings in ~/.aws/config
+aws configure set region $AWS_REGION --profile $AWS_PROFILE
+aws configure set output json --profile $AWS_PROFILE
+
+# Persist settings in shell profile for future sessions
+SHELL_PROFILE="$HOME/.bashrc"
+if [[ "$SHELL" == *"zsh" ]]; then
+    SHELL_PROFILE="$HOME/.zshrc"
+fi
+
+echo "export AWS_PROFILE=$AWS_PROFILE" >> $SHELL_PROFILE
+echo "export AWS_REGION=$AWS_REGION" >> $SHELL_PROFILE
+
+echo "AWS profile and region have been set successfully. Please restart your terminal or run 'source $SHELL_PROFILE' to apply changes."

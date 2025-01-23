@@ -1,0 +1,3 @@
+track_token_usage: true
+model: 'gpt-4o'
+
