@@ -1,0 +1,1 @@
+bin/set_aws_profile_and_region.sh
