@@ -12,6 +12,7 @@ plugins=(
   zsh-autosuggestions # git clone https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
   zsh-syntax-highlighting # git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
   vi-mode
+  zsh-256color
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -23,16 +24,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 alias gs='git status'
-alias gba='git branch -a'
-alias gf='git fetch'
-alias gch='git checkout'
-alias gcb='git checkout -b'
 alias ga='git add'
 alias gc='git commit -m'
 alias gca='git commit --amend'
 alias gps='git push origin'
-alias gpl='git pull origin'
-alias gd='git diff'
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -50,8 +45,7 @@ export PATH="/usr/local/protobuf/bin:$PATH"
 export GOPATH=$HOME/Go
 export PATH=$PATH:$GOPATH/bin
 alias n="nvim"
-alias t="tmux"
-alias cat="bat"
+alias t="todo.sh"
 
 # ---- FZF -----
 
@@ -104,7 +98,8 @@ export BAT_THEME=Dracula
 
 # ---- Eza (better ls) -----
 
-alias ls="eza --icons=always"
+alias ls="eza"
+alias lss="eza --long --header --accessed --created --all --no-user --octal-permissions --git --total-size"
 
 # ---- TheFuck -----
 
