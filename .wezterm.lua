@@ -6,6 +6,7 @@ local io = require("io")
 local os = require("os")
 local act = wezterm.action
 
+config.window_close_confirmation = "NeverPrompt"
 -- if you are *NOT* lazy-loading smart-splits.nvim (recommended)
 local function is_vim(pane)
 	-- this is set by the plugin, and unset on ExitPre in Neovim
@@ -56,15 +57,24 @@ end
 
 config.enable_tab_bar = true
 
-config.font = wezterm.font("JetBrains Mono")
+config.font = wezterm.font({
+	family = "JetBrains Mono",
+})
 config.native_macos_fullscreen_mode = true
-config.max_fps = 240
-config.webgpu_power_preference = "HighPerformance"
-config.animation_fps = 240
+config.max_fps = 120
+config.animation_fps = 120
 config.send_composed_key_when_right_alt_is_pressed = false
 config.send_composed_key_when_left_alt_is_pressed = true
+config.mouse_wheel_scrolls_tabs = true
+config.tab_max_width = 50
+local gpus = wezterm.gui.enumerate_gpus()
 
+config.webgpu_preferred_adapter = gpus[1]
+config.front_end = "WebGpu"
+config.dpi = 144
+config.custom_block_glyphs = false
 config.keys = {
+
 	split_nav("move", "h"),
 	split_nav("move", "j"),
 	split_nav("move", "k"),
@@ -159,6 +169,12 @@ config.keys = {
 		mods = "CMD",
 		action = act.EmitEvent("trigger-vim-with-scrollback"),
 	},
+	-- Enable Debug Ovbverlay
+	{
+		key = "L",
+		mods = "CTRL|SHIFT",
+		action = wezterm.action.ShowDebugOverlay,
+	},
 }
 
 config.harfbuzz_features = {
@@ -192,10 +208,10 @@ config.harfbuzz_features = {
 
 -- config.color_scheme = "Abernathy"
 -- config.color_scheme = "Atom"
--- config.color_scheme = "Duckbones"
+config.color_scheme = "Duckbones"
 
 -- config.color_scheme = "Floraverse"
-config.color_scheme = "Laser"
+-- config.color_scheme = "Laser"
 -- config.color_scheme = "Material Vivid (base16)"
 -- config.color_scheme = "midnight-in-mojave"
 -- config.color_scheme = "Mikazuki (terminal.sexy)"
@@ -204,10 +220,15 @@ config.line_height = 1.2
 config.tab_bar_at_bottom = true
 config.window_decorations = "RESIZE"
 
-config.window_background_opacity = 0.8
-config.use_fancy_tab_bar = true
+config.window_background_opacity = 0.7
+config.macos_window_background_blur = 50
+config.use_fancy_tab_bar = false
 tabline.setup()
-notification_handling = "AlwaysShow"
+config.notification_handling = "AlwaysShow"
+config.anti_alias_custom_block_glyphs = true
+config.audible_bell = "SystemBeep"
+config.bold_brightens_ansi_colors = true
+config.font_shaper = "Harfbuzz"
 
 config.set_environment_variables = {
 	SHELL = "/bin/zsh",
