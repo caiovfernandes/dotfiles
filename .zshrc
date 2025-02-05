@@ -28,13 +28,8 @@ alias ga='git add'
 alias gc='git commit -m'
 alias gca='git commit --amend'
 alias gps='git push origin'
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-export PATH=$PATH:$HOME/bin
-export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/openssl@3/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/openssl@3/include"
+export WEZTERM_CONFIG_FILE="$HOME/.config/wezterm/wezterm.lua"
+
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi

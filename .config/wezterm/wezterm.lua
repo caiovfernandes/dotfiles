@@ -198,8 +198,8 @@ config.color_scheme = "Duckbones"
 -- config.color_scheme = "Mikazuki (terminal.sexy)"
 config.window_decorations = "RESIZE"
 
-config.window_background_opacity = 0.75
-config.macos_window_background_blur = 50
+config.window_background_opacity = 0.60
+config.macos_window_background_blur = 20
 config.use_fancy_tab_bar = false
 
 config.notification_handling = "AlwaysShow"
